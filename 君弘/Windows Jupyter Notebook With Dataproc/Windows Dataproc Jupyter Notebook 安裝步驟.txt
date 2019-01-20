@@ -1,0 +1,28 @@
+1.安裝Google SDK:
+https://cloud.google.com/sdk/docs/
+
+2.新增dataproc開啟叢集前設定:
+https://cloud.google.com/dataproc/docs/tutorials/jupyter-notebook
+(6.) Bucket設定
+(7.)初始化設定:gs://dataproc-initialization-actions/jupyter/jupyter.sh
+新增叢集
+
+裝好Google SDK後CMD執行:
+gcloud compute ssh cluster-bd1b-m ^
+    --project=api-project-854570206599 --zone=us-west1-a  -- ^
+    -D 8123 -N
+會執行一個的Putty為了進行Proxy
+
+新開啟一個CMD輸入:
+"%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe" ^
+    --proxy-server="socks5://localhost:8123" ^
+    --user-data-dir="Temp/cluster-bd1b-m"
+
+會彈出一個Chrome視窗
+在URL輸入:
+http://cluster-bd1b-m:8123
+進入Jupyter Notebook
+
+!pip install graphframes
+from graphframes import *
+確認graphframes安裝完成
